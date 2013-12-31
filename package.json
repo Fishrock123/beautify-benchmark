@@ -1,7 +1,7 @@
 {
   "name": "beautify-benchmark",
   "version": "0.0.0",
-  "description": "Beautify benchmark.js output.",
+  "description": "Beautify Benchmark.js's output into readable form.",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"

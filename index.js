@@ -1,5 +1,6 @@
 exports.add = add
 exports.log = log
+exports.reset = reset
 exports.store = []
 exports.numCompleted = 0
 
@@ -46,12 +47,16 @@ function log() {
 
   exports.store.forEach(logBench);
 
+  reset()
+
+  console.log('')
+}
+
+function reset() {
   exports.store = []
   ops_arr = []
   name_maxlen = 0
   ops_maxlen = 0
-
-  console.log('')
 }
 
 function logBench(bench) {

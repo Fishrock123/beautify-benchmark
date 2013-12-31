@@ -1,0 +1,30 @@
+{
+  "name": "beautify-benchmark",
+  "version": "0.0.0",
+  "description": "Beautify benchmark.js output.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Fishrock123/beautify-benchmark.git"
+  },
+  "keywords": [
+    "benchmark",
+    "beautify"
+  ],
+  "author": {
+    "name": "Jeremiah Senkpiel",
+    "email": "fishrock123@rocketmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Fishrock123/beautify-benchmark/issues",
+    "email": "fishrock123@rocketmail.com"
+  },
+  "homepage": "https://github.com/Fishrock123/beautify-benchmark",
+  "devDependencies": {
+    "benchmark": "*"
+  }
+}

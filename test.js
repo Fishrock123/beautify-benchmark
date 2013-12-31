@@ -43,8 +43,11 @@ suite.add('current', function() {
 .on('start', function(event) {
   console.log('\n  Starting...')
 })
-.on('complete', function() {
+.on('complete', function done() {
+  var current = benchmarks.getPercent('current')
   benchmarks.log()
+  if (current < 95)
+    assert.fail('' + current + '%', '95%', null, '>=', done)
 })
 .run({ 'async': false })
 

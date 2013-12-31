@@ -1,6 +1,7 @@
 exports.add = add
 exports.log = log
 exports.reset = reset
+exports.getPercent = getPercent
 exports.store = []
 exports.numCompleted = 0
 
@@ -38,6 +39,15 @@ function add(bench) {
     + ' test'
     + (exports.numCompleted > 1 ? 's' : '')
     + ' completed.\u000D')
+}
+
+function getPercent(name) {
+  var bench;
+  for (var i = exports.store.length - 1; i >= 0; i--) {
+    var element = exports.store[i]
+    if (element && element.name && element.name == name) return element
+  }
+  return bench ? (bench.hz.toFixed(bench.hz < 100 ? 2 : 0) / ops_top) * 100 : 0
 }
 
 function log() {

@@ -51,7 +51,6 @@ function getPercent(name) {
 }
 
 function log() {
-  exports.numCompleted = 0
 
   console.log('\n')
 
@@ -63,6 +62,7 @@ function log() {
 }
 
 function reset() {
+  exports.numCompleted = 0
   exports.store = []
   ops_arr = []
   name_maxlen = 0

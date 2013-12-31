@@ -19,8 +19,8 @@ function getSlowRandom() {
 
 function blaaaah(num) {
   // consume excess time for absolutely no reason at all
-  for (var i = 0; i < num * num; i++) {
-    num % num
+  for (var i = 0; i < num + num; i++) {
+    "catslol".split(num)
   }
   return num
 }
@@ -36,6 +36,25 @@ suite.add('current', function() {
 })
 .add('random blaaaah', function() {
   return ~getSlowRandom() ? false: true
+})
+.on('cycle', function(event) {
+  benchmarks.add(event.target)
+})
+.on('start', function(event) {
+  console.log('\n  Starting...')
+})
+.on('complete', function() {
+  benchmarks.log()
+})
+.run({ 'async': false })
+
+suite = new Benchmark.Suite
+
+suite.add('cats', function() {
+  return Math.abs(getRandom())
+})
+.add('whaaaaale', function() {
+  return Math.atan2(getRandom(), getRandom())
 })
 .on('cycle', function(event) {
   benchmarks.add(event.target)

@@ -45,7 +45,9 @@ function getPercent(name) {
   var bench;
   for (var i = exports.store.length - 1; i >= 0; i--) {
     var element = exports.store[i]
-    if (element && element.name && element.name == name) return element
+    if (element && element.name && element.name == name)
+      bench = element
+      break
   }
   return bench ? (bench.hz.toFixed(bench.hz < 100 ? 2 : 0) / ops_top) * 100 : 0
 }

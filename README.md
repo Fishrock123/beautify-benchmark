@@ -18,12 +18,26 @@ suit.on('cycle', function(event) {
 })
 ```
 
-### benchmarks.log()
+### benchmarks.getPercent(name)
+Returns the percentage of the given benchmark's ops/sec compared to the highest ops/sec.
+
+### benchmarks.reset()
+
+Manually clear the stored benchmarks.
+
+### benchmarks.log(options)
 
 ```js
 suit.on('complete', function() {
   benchmarks.log()
 })
+```
+
+##### default options
+```js
+options: {
+  reset: true
+}
 ```
 
 ## Result

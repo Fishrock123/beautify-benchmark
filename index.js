@@ -50,13 +50,14 @@ function getPercent(name) {
   return bench ? (bench.hz.toFixed(bench.hz < 100 ? 2 : 0) / ops_top) * 100 : 0
 }
 
-function log() {
+function log(options) {
+  options = options || { reset: true }
 
   console.log('\n')
 
   exports.store.forEach(logBench);
 
-  reset()
+  if (options.reset) reset()
 
   console.log('')
 }

@@ -24,6 +24,14 @@ console.log('')
 
 function add(bench) {
   exports.store.push(bench)
+
+  var len = (bench.name || (Number.isNaN(id) ? id : '<Test #' + id + '>')).length
+  name_maxlen = len > name_maxlen ? len : name_maxlen
+  var ops = bench.hz.toFixed(bench.hz < 100 ? 2 : 0)
+  ops_maxlen = formatNumber(ops).length > ops_maxlen ? formatNumber(ops).length : ops_maxlen
+  ops_arr.push(ops)
+  ops_top = Math.max.apply(Math, ops_arr);
+
   process.stdout.write('  '
     + color('pending', (++exports.numCompleted))
     + ' test'
@@ -35,15 +43,6 @@ function log() {
   exports.numCompleted = 0
 
   console.log('\n')
-
-  exports.store.forEach(function(bench) {
-    var len = (bench.name || (Number.isNaN(id) ? id : '<Test #' + id + '>')).length
-    name_maxlen = len > name_maxlen ? len : name_maxlen
-    var ops = bench.hz.toFixed(bench.hz < 100 ? 2 : 0)
-    ops_maxlen = formatNumber(ops).length > ops_maxlen ? formatNumber(ops).length : ops_maxlen
-    ops_arr.push(ops)
-  })
-  ops_top = Math.max.apply(Math, ops_arr);
 
   exports.store.forEach(logBench);
 

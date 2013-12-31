@@ -3,8 +3,8 @@ exports.log = log
 exports.store = []
 exports.numCompleted = 0
 
-var l_name = 0
-  , l_ops = 0
+var name_maxlen = 0
+  , ops_maxlen = 0
   , ops_arr = []
   , ops_top
   // Using Mocha's coloring
@@ -26,7 +26,9 @@ function add(bench) {
   exports.store.push(bench)
   process.stdout.write('  '
     + color('pending', (++exports.numCompleted))
-    + ' tests completed.\u000D')
+    + ' test'
+    + (exports.numCompleted > 1 ? 's' : '')
+    + ' completed.\u000D')
 }
 
 function log() {
@@ -36,15 +38,20 @@ function log() {
 
   exports.store.forEach(function(bench) {
     var len = (bench.name || (Number.isNaN(id) ? id : '<Test #' + id + '>')).length
-    l_name = len > l_name ? len : l_name
+    name_maxlen = len > name_maxlen ? len : name_maxlen
     var ops = bench.hz.toFixed(bench.hz < 100 ? 2 : 0)
-    l_ops = formatNumber(ops).length > l_ops ? formatNumber(ops).length : l_ops
+    ops_maxlen = formatNumber(ops).length > ops_maxlen ? formatNumber(ops).length : ops_maxlen
     ops_arr.push(ops)
-  });
+  })
   ops_top = Math.max.apply(Math, ops_arr);
-  ops_arr = []
 
   exports.store.forEach(logBench);
+
+  exports.store = []
+  ops_arr = []
+  name_maxlen = 0
+  ops_maxlen = 0
+
   console.log('')
 }
 
@@ -55,16 +62,19 @@ function logBench(bench) {
     , stats = bench.stats
     , size = stats.sample.length
     , result = bench.name || (Number.isNaN(id) ? id : '<Test #' + id + '>')
+    , name_len = result.length
     , ops = hz.toFixed(hz < 100 ? 2 : 0)
     , deviation = stats.rme.toFixed(2)
     , percent = ops / ops_top
 
+  if (ops == ops_top) result = color('green', result)
+
   if (error) {
     result += ': ' + color('fail', join(error))
   } else {
-    result += makeSpace(l_name - result.length)
+    result += makeSpace(name_maxlen - name_len)
       + color('pass', ' x ')
-      + makeSpace(l_ops - formatNumber(ops).length)
+      + makeSpace(ops_maxlen - formatNumber(ops).length)
       + color(
           percent > .95  ? 'green'
         : percent > .8   ? 'medium'

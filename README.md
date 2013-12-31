@@ -26,6 +26,10 @@ suit.on('complete', function() {
 })
 ```
 
+## Result
+
+![beautify-benchmark output](http://imgur.com/AME4QSr.png)
+
 ## License
 
 The MIT License (MIT)

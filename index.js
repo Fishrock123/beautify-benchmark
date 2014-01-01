@@ -64,7 +64,7 @@ function log(options) {
     logBench(exports.store[i], tolerances)
   }
 
-  if (options.reset === undefined || options.reset === true) reset()
+  if (options.reset === undefined || options.reset === true) exports.reset()
 
   console.log('')
 }

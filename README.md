@@ -36,7 +36,8 @@ suit.on('complete', function() {
 ##### default options
 ```js
 options: {
-  reset: true
+    reset: true
+  , tolerances: { pass: .95, mid: .80 }
 }
 ```
 

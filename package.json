@@ -1,6 +1,6 @@
 {
   "name": "beautify-benchmark",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Beautify Benchmark.js's output into readable form.",
   "main": "index.js",
   "scripts": {

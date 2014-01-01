@@ -54,11 +54,15 @@ function getPercent(name) {
 }
 
 function log(options) {
-  options = options || { reset: true }
+  options = options || {}
+  var reset      = options.reset || true
+    , tolerances = options.tolerances || { pass: .95, mid: .80 }
 
   console.log('\n')
 
-  exports.store.forEach(logBench);
+  for (var i = 0; i < exports.store.length; i++) {
+    logBench(exports.store[i], tolerances)
+  }
 
   if (options.reset === undefined || options.reset === true) reset()
 
@@ -73,7 +77,7 @@ function reset() {
   ops_maxlen = 0
 }
 
-function logBench(bench) {
+function logBench(bench, tolerances) {
   var error = bench.error
     , hz = bench.hz
     , id = bench.id
@@ -94,8 +98,8 @@ function logBench(bench) {
       + color('pass', ' x ')
       + makeSpace(ops_maxlen - formatNumber(ops).length)
       + color(
-          percent > .95  ? 'green'
-        : percent > .8   ? 'medium'
+          percent > (tolerances.pass || .95)  ? 'green'
+        : percent > (tolerances.mid  || .80)  ? 'medium'
         : 'slow', formatNumber(ops))
       + ' ops/sec '
       + color('pass', '\xb1')

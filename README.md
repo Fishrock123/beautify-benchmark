@@ -1,4 +1,4 @@
-# Beautify-Benchmark
+# [Beautify-Benchmark](https://npmjs.org/package/beautify-benchmark)
 
 Beautify Benchmark.js's output into readable form.
 

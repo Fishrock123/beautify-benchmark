@@ -60,7 +60,7 @@ function log(options) {
 
   exports.store.forEach(logBench);
 
-  if (options.reset) reset()
+  if (options.reset === undefined || options.reset === true) reset()
 
   console.log('')
 }

@@ -1,4 +1,4 @@
-# [Beautify-Benchmark](https://npmjs.org/package/beautify-benchmark)
+# Beautify-Benchmark [![NPM version](https://badge.fury.io/js/beautify-benchmark.svg)](http://badge.fury.io/js/beautify-benchmark)
 
 Beautify Benchmark.js's output into readable form.
 
